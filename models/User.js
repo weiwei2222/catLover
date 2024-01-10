@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-
-const SALT_ROUNDS = 6;
 
 const UserSchema = mongoose.Schema(
   {
@@ -28,12 +25,12 @@ const UserSchema = mongoose.Schema(
       type: String,
       default: "",
     },
+    location: String,
+    catsNumber: Number,
     friends: {
       type: Array,
       default: [],
     },
-    location: String,
-    catsNumber: Number,
   },
   {
     timestamps: true,
@@ -46,14 +43,6 @@ const UserSchema = mongoose.Schema(
     },
   }
 );
-
-UserSchema.pre("save", async function (next) {
-  // 'this' is the user doc
-  if (!this.isModified("password")) return next();
-  // update the password with the computed hash
-  this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
-  return next();
-});
 
 const User = mongoose.model("User", UserSchema);
 export default User;

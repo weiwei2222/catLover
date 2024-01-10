@@ -10,9 +10,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 // Import all Routes
-// import authRoutes from "./routes/authRoutes.js";
-import userRoutes from "./routes/usersRoutes.js";
-import postRoutes from "./routes/postsRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import usersRoutes from "./routes/usersRoutes.js";
+// import postRoutes from "./routes/postsRoutes.js";
+import { verifyToken } from "./middeware/requireAuth.js";
+import { signup } from "./controllers/authController.js";
+import { createPost } from "./controllers/postsController.js";
 
 // PORT
 const PORT = process.env.PORT || 3005;
@@ -45,14 +48,14 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// // Routes with files
-// app.post("/auth/register", upload.single("picture"), register);
-// app.post("/posts", verifyToken, upload.single("picture"), createPost);
+// Routes with files
+app.post("/auth/signup", upload.single("picture"), signup);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
 // Routes
-// app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
-app.use("/posts", postRoutes);
+app.use("/auth", authRoutes);
+app.use("/users", usersRoutes);
+// app.use("/posts", postRoutes);
 
 app.listen(PORT, function () {
   console.log(`Express app running on port: ${PORT}`);
