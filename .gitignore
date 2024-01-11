@@ -1,6 +1,8 @@
 .env
 node_modules
 controllers
+src
+public
 # Logs
 logs
 *.log

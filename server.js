@@ -12,7 +12,7 @@ import { fileURLToPath } from "url";
 // Import all Routes
 import authRoutes from "./routes/authRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
-// import postRoutes from "./routes/postsRoutes.js";
+import postRoutes from "./routes/postsRoutes.js";
 import { verifyToken } from "./middeware/requireAuth.js";
 import { signup } from "./controllers/authController.js";
 import { createPost } from "./controllers/postsController.js";
@@ -55,7 +55,7 @@ app.post("/posts", verifyToken, upload.single("picture"), createPost);
 // Routes
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
-// app.use("/posts", postRoutes);
+app.use("/posts", postRoutes);
 
 app.listen(PORT, function () {
   console.log(`Express app running on port: ${PORT}`);
