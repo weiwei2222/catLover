@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 
-/* READ */
+// read
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -30,7 +30,17 @@ export const getUserFriends = async (req, res) => {
   }
 };
 
-/* UPDATE */
+// search friend
+export const searchUser = async (req, res) => {
+  try {
+    const searchUser = await User.find({ userName: req.body.title });
+    res.status(200).json(searchUser);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
+// updata friend
 export const addRemoveFriend = async (req, res) => {
   try {
     const { id, friendId } = req.params;

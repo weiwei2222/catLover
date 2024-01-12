@@ -31,7 +31,8 @@ app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+app.use(express.static(path.join(__dirname, "dist")));
+// app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 // Connect to the database
 import MongoDB from "./config/database.js";

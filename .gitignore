@@ -1,8 +1,10 @@
 .env
 node_modules
-controllers
-src
 public
+src
+README.md
+models
+middeware
 # Logs
 logs
 *.log
