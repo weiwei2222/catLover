@@ -11,16 +11,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import {
-  Search,
-  Message,
-  DarkMode,
-  LightMode,
-  Notifications,
-  Help,
-  Menu,
-  Close,
-} from "@mui/icons-material";
+import { Search, DarkMode, LightMode, Menu, Close } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "../state/state";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +29,7 @@ function Navbar() {
   const background = theme.palette.background.default;
   const primaryDark = theme.palette.primary.dark;
   const alt = theme.palette.background.alt;
-
+  console.log(user);
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">

@@ -69,7 +69,7 @@ const Form = () => {
     onSubmitProps.resetForm();
 
     if (savedUser) {
-      setPageType("login");
+      navigate("/home");
     }
   };
 

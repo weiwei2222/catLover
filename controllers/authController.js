@@ -2,6 +2,10 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
+};
+
 /* SIGNUP USER */
 export const signup = async (req, res) => {
   try {
@@ -28,7 +32,8 @@ export const signup = async (req, res) => {
       friends,
     });
     const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
+    const token = createToken(savedUser._id);
+    res.status(201).json(savedUser, token);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
