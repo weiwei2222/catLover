@@ -36,7 +36,7 @@ function Login() {
               CatLover
             </Typography>
             <Typography fontWeight="500" variant="h5" sx={{ mb: "2rem" }}>
-              Welcome to Socipedia, the Social Media for Sociopaths!
+              Welcome to Catlover, the Social Media for cat lover!
             </Typography>
             <Form />
           </Box>

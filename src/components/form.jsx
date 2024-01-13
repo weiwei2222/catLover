@@ -1,4 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../state/state";
+import Dropzone from "react-dropzone";
+import FlexBetween from "../components/FlexBetween";
 import {
   Box,
   Button,
@@ -10,11 +15,6 @@ import {
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setLogin } from "../state/state";
-import Dropzone from "react-dropzone";
-import FlexBetween from "../components/FlexBetween";
 
 const signupShema = yup.object().shape({
   userName: yup.string().required("required"),
@@ -30,7 +30,7 @@ const loginSchema = yup.object().shape({
   password: yup.string().required("required"),
 });
 
-const initialValuesRegister = {
+const initialValuesSignup = {
   userName: "",
   email: "",
   password: "",
@@ -61,7 +61,7 @@ const Form = () => {
     }
     formData.append("picturePath", values.picture.name);
 
-    const savedUserResponse = await fetch("/auth/signup", {
+    const savedUserResponse = await fetch("http://localhost:3005/auth/signup", {
       method: "POST",
       body: formData,
     });
@@ -74,7 +74,7 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("/auth/login", {
+    const loggedInResponse = await fetch("http://localhost:3005/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -100,7 +100,7 @@ const Form = () => {
   return (
     <Formik
       onSubmit={handleFormSubmit}
-      initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
+      initialValues={isLogin ? initialValuesLogin : initialValuesSignup}
       validationSchema={isLogin ? loginSchema : signupShema}
     >
       {({
