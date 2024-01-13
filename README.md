@@ -9,7 +9,7 @@ https://trello.com/b/jzsinVwf/mern
 # Technologies Used
 
 Backend use Express + MongoDB <br/>
-Express:https://expressjs.com/ <br/>
+Express:https://expressjs.com/
 MongoDB: https://www.mongodb.com/ <br/>
 Mongoose: https://github.com/Automattic/mongoose <br/>
 body-parser: https://www.npmjs.com/package/body-parser <br/>

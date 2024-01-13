@@ -1,8 +1,7 @@
 .env
 node_modules
 
-components
-README.md
+README.md*
 # Logs
 logs
 *.log
