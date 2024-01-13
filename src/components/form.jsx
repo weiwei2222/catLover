@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../state/state";
 import Dropzone from "react-dropzone";
-import FlexBetween from "../components/FlexBetween";
+import FlexBetween from "./FlexBetween";
 import {
   Box,
   Button,
@@ -21,7 +21,7 @@ const signupShema = yup.object().shape({
   email: yup.string().email("invalid email").required("required"),
   password: yup.string().required("required"),
   location: yup.string(),
-  catNumber: yup.number(),
+  catsNumber: yup.number(),
   picture: yup.string().required("required"),
 });
 
@@ -35,7 +35,7 @@ const initialValuesSignup = {
   email: "",
   password: "",
   location: "",
-  catNumber: "",
+  catsNumber: null,
   picture: "",
 };
 
@@ -149,13 +149,13 @@ const Form = () => {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.catNumber}
-                  name="catNumber"
+                  name="catsNumber"
                   type="number"
                   inputProps={{ min: 0 }}
                   error={
-                    Boolean(touched.catNumber) && Boolean(errors.catNumber)
+                    Boolean(touched.catsNumber) && Boolean(errors.catsNumber)
                   }
-                  helperText={touched.catNumber && errors.catNumber}
+                  helperText={touched.catsNumber && errors.catsNumber}
                   sx={{ gridColumn: "span 4" }}
                 />
                 <Box

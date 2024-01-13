@@ -1,5 +1,5 @@
 import { Grid, Box, Paper, Typography } from "@mui/material";
-import Form from "../components/form";
+import Form from "../components/Form";
 
 function Login() {
   return (
