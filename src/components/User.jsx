@@ -12,7 +12,7 @@ import UserImg from "./UserImg";
 import FlexBetween from "./FlexBetween";
 import Wrapper from "./Wrapper";
 
-function User({ userId, picturePath }) {
+const User = ({ userId, picturePath }) => {
   const [user, setUser] = useState(null);
   const { palette } = useTheme();
   const navigate = useNavigate();
@@ -85,6 +85,6 @@ function User({ userId, picturePath }) {
       <Divider />
     </Wrapper>
   );
-}
+};
 
 export default User;

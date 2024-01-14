@@ -29,7 +29,7 @@ function Navbar() {
   const background = theme.palette.background.default;
   const primaryDark = theme.palette.primary.dark;
   const alt = theme.palette.background.alt;
-  console.log(user);
+
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">
