@@ -32,9 +32,10 @@ export const authSlice = createSlice({
       state.posts = updatedPosts;
     },
     setDeletePost: (state, action) => {
-      state.posts = action.payload.posts.filter(
-        (p) => p._id !== action.payload._id
-      );
+      state.posts = state.posts.filter((p) => {
+        console.log(p);
+        return p._id !== action.payload.post._id;
+      });
     },
     setFriends: (state, action) => {
       if (state.user) {

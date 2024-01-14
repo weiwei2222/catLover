@@ -13,6 +13,7 @@ import {
   FavoriteOutlined,
 } from "@mui/icons-material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 function PostDetail({
   postId,
@@ -62,7 +63,7 @@ function PostDetail({
     const deletePost = await response.json();
 
     if (response.ok) {
-      dispatch(setDeletePost(deletePost));
+      dispatch(setDeletePost({ post: deletePost }));
     }
   };
   return (
@@ -106,11 +107,17 @@ function PostDetail({
           </FlexBetween>
         </FlexBetween>
 
-        <IconButton>
-          {postUserId == loggedInUserId && (
+        {postUserId == loggedInUserId && (
+          <IconButton>
+            <EditOutlinedIcon />
+          </IconButton>
+        )}
+
+        {postUserId == loggedInUserId && (
+          <IconButton>
             <DeleteOutlineIcon onClick={handleDelete} />
-          )}
-        </IconButton>
+          </IconButton>
+        )}
       </FlexBetween>
       {isComments && (
         <Box mt="0.5rem">
