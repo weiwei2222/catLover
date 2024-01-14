@@ -44,6 +44,17 @@ export const getUserPosts = async (req, res) => {
   }
 };
 
+// Delete
+export const deletePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await Post.findByIdAndDelete({ _id: id });
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
 // Update
 export const likePost = async (req, res) => {
   try {
@@ -67,17 +78,5 @@ export const likePost = async (req, res) => {
     res.status(200).json(updatedPost);
   } catch (err) {
     res.status(404).json({ message: err.message });
-  }
-};
-
-// Delete
-export const deletePost = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ error: "No such post" });
-  }
-  const post = await Post.findOneDelete({ _id: id });
-  if (!post) {
-    return res.status(400).json({ error: "No such post" });
   }
 };

@@ -3,16 +3,20 @@ import {
   getAllPosts,
   getUserPosts,
   likePost,
+  deletePost,
 } from "../controllers/postsController.js";
 import { verifyToken } from "../middeware/requireAuth.js";
 
 const router = express.Router();
 
-/* READ */
+// read
 router.get("/", verifyToken, getAllPosts);
 router.get("/:userId/posts", verifyToken, getUserPosts);
 
-/* UPDATE */
+// update like
 router.patch("/:id/like", verifyToken, likePost);
+
+// delete posts
+router.delete("/:id", verifyToken, deletePost);
 
 export default router;
