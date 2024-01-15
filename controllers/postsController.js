@@ -55,7 +55,28 @@ export const deletePost = async (req, res) => {
   }
 };
 
-// Update
+// Update post------------------------
+export const editPost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const editPost = await Post.findById({ _id: id });
+    res.status(200).json(editPost);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
+export const updatePost = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const updatePost = await Post.findByIdAndUpdate(postId, req.body);
+    res.status(200).json(updatePost);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
+// Update like
 export const likePost = async (req, res) => {
   try {
     const { id } = req.params;

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setPost, setDeletePost } from "../state/state";
 
 import Friend from "./Friend";
@@ -32,6 +33,7 @@ function PostDetail({
   const loggedInUserId = useSelector((state) => state.user._id);
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
+  const navigate = useNavigate();
 
   const { palette } = useTheme();
   const main = palette.neutral.main;
@@ -49,8 +51,6 @@ function PostDetail({
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
   };
-
-  console.log(postId);
 
   const handleDelete = async () => {
     const response = await fetch(`http://localhost:3005/posts/${postId}`, {
@@ -107,17 +107,19 @@ function PostDetail({
           </FlexBetween>
         </FlexBetween>
 
-        {postUserId == loggedInUserId && (
-          <IconButton>
-            <EditOutlinedIcon />
-          </IconButton>
-        )}
+        <FlexBetween>
+          {postUserId == loggedInUserId && (
+            <IconButton onClick={() => navigate(`/edit/${postId}`)}>
+              <EditOutlinedIcon />
+            </IconButton>
+          )}
 
-        {postUserId == loggedInUserId && (
-          <IconButton>
-            <DeleteOutlineIcon onClick={handleDelete} />
-          </IconButton>
-        )}
+          {postUserId == loggedInUserId && (
+            <IconButton onClick={handleDelete}>
+              <DeleteOutlineIcon />
+            </IconButton>
+          )}
+        </FlexBetween>
       </FlexBetween>
       {isComments && (
         <Box mt="0.5rem">

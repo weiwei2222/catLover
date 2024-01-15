@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./pages/login";
+import Edit from "./pages/edit";
 import Profile from "./pages/profile";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -23,6 +24,10 @@ function App() {
               path="/home"
               element={isAuth ? <Home /> : <Navigate to="/" />}
             />
+            <Route
+              path="/edit/:id"
+              element={isAuth ? <Edit /> : <Navigate to="/"></Navigate>}
+            ></Route>
             <Route
               path="/profile/:userId"
               element={isAuth ? <Profile /> : <Navigate to="/" />}

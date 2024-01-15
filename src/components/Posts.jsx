@@ -38,7 +38,6 @@ function Posts({ userId, isProfile = false }) {
     }
   }, []);
 
-  console.log(posts);
   return (
     <>
       {posts

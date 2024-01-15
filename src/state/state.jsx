@@ -33,7 +33,6 @@ export const authSlice = createSlice({
     },
     setDeletePost: (state, action) => {
       state.posts = state.posts.filter((p) => {
-        console.log(p);
         return p._id !== action.payload.post._id;
       });
     },

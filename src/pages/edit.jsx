@@ -2,11 +2,10 @@ import { Box, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import User from "../components/User";
-import MyPost from "../components/MyPost";
-import Posts from "../components/Posts";
+import UpdataPost from "../components/UpdataPost";
 import FriendList from "../components/FriendList";
 
-function Home() {
+function Edit() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const { _id, picturePath } = useSelector((state) => state.user);
   return (
@@ -26,8 +25,7 @@ function Home() {
           flexBasis={isNonMobileScreens ? "42%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
-          <MyPost picturePath={picturePath} />
-          <Posts userId={_id} />
+          <UpdataPost picturePath={picturePath} />
         </Box>
         {isNonMobileScreens && (
           <Box flexBasis="26%">
@@ -39,4 +37,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Edit;
