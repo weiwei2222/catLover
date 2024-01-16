@@ -37,7 +37,6 @@ function UpdataPost({ picturePath }) {
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
 
-  //----------
   const params = useParams();
   const id = params.id;
 
@@ -50,7 +49,6 @@ function UpdataPost({ picturePath }) {
       },
     });
     const editPost = await response.json();
-    console.log(editPost);
     if (response.ok) {
       setEditPost(editPost);
     }
@@ -74,8 +72,8 @@ function UpdataPost({ picturePath }) {
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
     });
+
     const updatePost = await response.json();
-    console.log(updatePost);
     dispatch(setTest({ post: updatePost }));
     setImage(null);
     setPost("");
