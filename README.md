@@ -53,8 +53,6 @@ For free photos
 # Getting Started
 
 <a href="https://trello.com/b/jzsinVwf/catlover" target="_blank">trello link</a><br/>
-
- <br/>
 <a href="https://catlover.onrender.com/" target="_blank">Live demo</a>
 
 # Unsolved Problems
