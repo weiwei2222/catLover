@@ -29,6 +29,7 @@ function MyPost({ picturePath }) {
   const { palette } = useTheme();
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
+  const oringe = palette.primary.dark;
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
 
@@ -40,7 +41,7 @@ function MyPost({ picturePath }) {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
     }
-    console.log(formData);
+
     const response = await fetch(`http://localhost:3005/posts`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
@@ -133,6 +134,7 @@ function MyPost({ picturePath }) {
             color: palette.background.alt,
             backgroundColor: palette.primary.main,
             borderRadius: "3rem",
+            "&:hover": { cursor: "pointer", background: oringe },
           }}
         >
           POST
