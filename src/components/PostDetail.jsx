@@ -40,7 +40,7 @@ function PostDetail({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const response = await fetch(`http://localhost:3005/posts/${postId}/like`, {
+    const response = await fetch(`/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ function PostDetail({
   };
 
   const handleDelete = async () => {
-    const response = await fetch(`http://localhost:3005/posts/${postId}`, {
+    const response = await fetch(`/posts/${postId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -83,7 +83,7 @@ function PostDetail({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:3005/assets/${picturePath}`}
+          src={`/assets/${picturePath}`}
         />
       )}
       <FlexBetween mt="0.25rem">
