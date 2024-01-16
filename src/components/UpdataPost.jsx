@@ -41,7 +41,7 @@ function UpdataPost({ picturePath }) {
   const id = params.id;
 
   const handlEdit = async () => {
-    const response = await fetch(`http://localhost:3005/posts/edit/${id}`, {
+    const response = await fetch(`/posts/edit/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
