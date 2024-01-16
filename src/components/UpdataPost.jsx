@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "../state/state";
+import { setPosts, setPost as setTest } from "../state/state";
 import Dropzone from "react-dropzone";
 
 import UserImg from "./UserImg";
@@ -22,7 +23,7 @@ import {
   IconButton,
 } from "@mui/material";
 
-function MyPost({ picturePath }) {
+function UpdataPost({ picturePath }) {
   const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
@@ -30,6 +31,9 @@ function MyPost({ picturePath }) {
   const { palette } = useTheme();
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
+  const [editPost, setEditPost] = useState(null);
+  const navigate = useNavigate();
+
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
 
@@ -48,7 +52,7 @@ function MyPost({ picturePath }) {
     const editPost = await response.json();
     console.log(editPost);
     if (response.ok) {
-      dispatch(setPosts({ posts: editPost }));
+      setEditPost(editPost);
     }
   };
 
@@ -56,7 +60,7 @@ function MyPost({ picturePath }) {
     handlEdit();
   }, []);
 
-  const handlePost = async () => {
+  const handleUpdatePost = async () => {
     const formData = new FormData();
     formData.append("userId", _id);
     formData.append("description", post);
@@ -64,34 +68,40 @@ function MyPost({ picturePath }) {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
     }
-
-    const response = await fetch(`http://localhost:3005/posts`, {
-      method: "POST",
+    console.log(formData);
+    const response = await fetch(`http://localhost:3005/posts/${id}`, {
+      method: "PATCH",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
     });
-    const posts = await response.json();
-    dispatch(setPosts({ posts }));
+    const updatePost = await response.json();
+    console.log(updatePost);
+    dispatch(setTest({ post: updatePost }));
     setImage(null);
     setPost("");
+    navigate("/home");
   };
 
   return (
     <Wrapper>
       <FlexBetween gap="1.5rem">
         <UserImg image={picturePath} />
-        <InputBase
-          placeholder="What's on your mind..."
-          onChange={(e) => setPost(e.target.value)}
-          value={post}
-          sx={{
-            width: "100%",
-            backgroundColor: palette.neutral.light,
-            borderRadius: "2rem",
-            padding: "1rem 2rem",
-          }}
-        />
-        sdfgdfg
+        {editPost ? (
+          <InputBase
+            placeholder={"Post some thing..."}
+            onChange={(e) => setPost(e.target.value)}
+            defaultValue={editPost.description}
+            // value={post}
+            sx={{
+              width: "100%",
+              backgroundColor: palette.neutral.light,
+              borderRadius: "2rem",
+              padding: "1rem 2rem",
+            }}
+          />
+        ) : (
+          "loading"
+        )}
       </FlexBetween>
       {isImage && (
         <Box
@@ -151,7 +161,7 @@ function MyPost({ picturePath }) {
 
         <Button
           disabled={!post}
-          onClick={handlePost}
+          onClick={handleUpdatePost}
           sx={{
             color: palette.background.alt,
             backgroundColor: palette.primary.main,
@@ -165,4 +175,4 @@ function MyPost({ picturePath }) {
   );
 }
 
-export default MyPost;
+export default UpdataPost;

@@ -28,10 +28,10 @@ function App() {
               path="/edit/:id"
               element={isAuth ? <Edit /> : <Navigate to="/"></Navigate>}
             ></Route>
-            <Route
+            {/* <Route
               path="/profile/:userId"
               element={isAuth ? <Profile /> : <Navigate to="/" />}
-            />
+            /> */}
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

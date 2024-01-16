@@ -17,7 +17,7 @@ router.get("/:userId/posts", verifyToken, getUserPosts);
 
 // update post
 router.get("/edit/:id", verifyToken, editPost);
-router.patch("/:id", verifyToken, updatePost);
+// router.patch("/:id", verifyToken, updatePost);
 
 // update like
 router.patch("/:id/like", verifyToken, likePost);

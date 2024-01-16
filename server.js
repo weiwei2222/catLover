@@ -15,7 +15,7 @@ import usersRoutes from "./routes/usersRoutes.js";
 import postRoutes from "./routes/postsRoutes.js";
 import { verifyToken } from "./middeware/requireAuth.js";
 import { signup } from "./controllers/authController.js";
-import { createPost } from "./controllers/postsController.js";
+import { createPost, updatePost } from "./controllers/postsController.js";
 
 // PORT
 const PORT = process.env.PORT || 3005;
@@ -52,6 +52,7 @@ const upload = multer({ storage });
 // Routes with files
 app.post("/auth/signup", upload.single("picture"), signup);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
+app.patch("/posts/:id", verifyToken, upload.single("picture"), updatePost);
 
 // Routes
 app.use("/auth", authRoutes);

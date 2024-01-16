@@ -1,5 +1,6 @@
 import { Box, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import User from "../components/User";
 import UpdataPost from "../components/UpdataPost";
