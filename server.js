@@ -52,9 +52,10 @@ const upload = multer({ storage });
 // Routes with files
 app.post("/auth/signup", upload.single("picture"), signup);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
+// Route patch updatapost
 app.patch("/posts/:id", verifyToken, upload.single("picture"), updatePost);
 
-// Routes
+// Basic Routes
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
 app.use("/posts", postRoutes);
