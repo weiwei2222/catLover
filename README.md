@@ -10,6 +10,11 @@ CatLover app is the Social Media for cat lover!
 <img src="https://github.com/weiwei2222/catLover/blob/main/Screenshot2.png">
 <img src="https://github.com/weiwei2222/catLover/blob/main/Screenshot3.png">
 
+# Getting Started
+
+<a href="https://trello.com/b/jzsinVwf/catlover" target="_blank">Trello link</a><br/>
+<a href="https://catlover.onrender.com/" target="_blank">Live demo</a>
+
 # Technologies Used
 
 Here is a list of the technologes used in the CatLover App.
@@ -50,11 +55,6 @@ For CSS and UI <br/>
 
 For free photos
 <a href="https://www.pexels.com/" target="_blank">Pexels</a><br/>
-
-# Getting Started
-
-<a href="https://trello.com/b/jzsinVwf/catlover" target="_blank">trello link</a><br/>
-<a href="https://catlover.onrender.com/" target="_blank">Live demo</a>
 
 # Unsolved Problems
 
