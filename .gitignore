@@ -2,6 +2,7 @@
 node_modules
 public/assets/*
 !public/assets/.gitkeep
+!public/assets/cat.jpg
 # Logs
 dist
 logs
