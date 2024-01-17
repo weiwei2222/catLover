@@ -158,7 +158,6 @@ function UpdataPost({ picturePath }) {
         </FlexBetween>
 
         <Button
-          disabled={!post}
           onClick={handleUpdatePost}
           sx={{
             color: palette.background.alt,
