@@ -66,7 +66,7 @@ function UpdataPost({ picturePath }) {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
     }
-    console.log(formData);
+
     const response = await fetch(`/api/posts/${id}`, {
       method: "PATCH",
       headers: { Authorization: `Bearer ${token}` },

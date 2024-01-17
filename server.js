@@ -50,15 +50,15 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Routes with files
-app.post("/auth/signup", upload.single("picture"), signup);
-app.post("/posts", verifyToken, upload.single("picture"), createPost);
+app.post("/api/auth/signup", upload.single("picture"), signup);
+app.post("/api/posts", verifyToken, upload.single("picture"), createPost);
 // Route patch updatapost
-app.patch("/posts/:id", verifyToken, upload.single("picture"), updatePost);
+app.patch("/api/posts/:id", verifyToken, upload.single("picture"), updatePost);
 
 // Basic Routes
-app.use("/auth", authRoutes);
-app.use("/users", usersRoutes);
-app.use("/posts", postRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", usersRoutes);
+app.use("/api/posts", postRoutes);
 
 app.listen(PORT, function () {
   console.log(`Express app running on port: ${PORT}`);
