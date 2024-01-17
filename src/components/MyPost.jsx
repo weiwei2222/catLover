@@ -42,7 +42,7 @@ function MyPost({ picturePath }) {
       formData.append("picturePath", image.name);
     }
 
-    const response = await fetch(`/posts`, {
+    const response = await fetch(`/api/posts`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,

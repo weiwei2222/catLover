@@ -10,7 +10,7 @@ function Posts({ userId, isProfile = false }) {
   const token = useSelector((state) => state.token);
 
   const getAllPosts = async () => {
-    const response = await fetch("/posts", {
+    const response = await fetch("/api/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -19,7 +19,7 @@ function Posts({ userId, isProfile = false }) {
   };
 
   const getUserPosts = async () => {
-    const response = await fetch(`/posts/${userId}/posts`, {
+    const response = await fetch(`/api/posts/${userId}/posts`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });

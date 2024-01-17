@@ -12,7 +12,7 @@ const FriendList = ({ userId }) => {
   const friends = useSelector((state) => state.user.friends);
 
   const getFriends = async () => {
-    const response = await fetch(`/users/${userId}/friends`, {
+    const response = await fetch(`/api/users/${userId}/friends`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });

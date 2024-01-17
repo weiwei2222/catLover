@@ -40,7 +40,7 @@ function PostDetail({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const response = await fetch(`/posts/${postId}/like`, {
+    const response = await fetch(`/api/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ function PostDetail({
   };
 
   const handleDelete = async () => {
-    const response = await fetch(`/posts/${postId}`, {
+    const response = await fetch(`/api/posts/${postId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

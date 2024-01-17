@@ -41,7 +41,7 @@ function UpdataPost({ picturePath }) {
   const id = params.id;
 
   const handlEdit = async () => {
-    const response = await fetch(`/posts/edit/${id}`, {
+    const response = await fetch(`/api/posts/edit/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -67,7 +67,7 @@ function UpdataPost({ picturePath }) {
       formData.append("picturePath", image.name);
     }
     console.log(formData);
-    const response = await fetch(`/posts/${id}`, {
+    const response = await fetch(`/api/posts/${id}`, {
       method: "PATCH",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
