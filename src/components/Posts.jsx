@@ -10,7 +10,7 @@ function Posts({ userId, isProfile = false }) {
   const token = useSelector((state) => state.token);
 
   const getAllPosts = async () => {
-    const response = await fetch("http://localhost:3005/posts", {
+    const response = await fetch("/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
