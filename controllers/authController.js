@@ -9,15 +9,9 @@ const createToken = (_id) => {
 /* SIGNUP USER */
 export const signup = async (req, res) => {
   try {
-    const {
-      userName,
-      email,
-      password,
-      picturePath,
-      location,
-      catsNumber,
-      friends,
-    } = req.body;
+    const picturePath = req.file.filename;
+    const { userName, email, password, location, catsNumber, friends } =
+      req.body;
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);

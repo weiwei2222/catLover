@@ -5,7 +5,8 @@ import User from "../models/User.js";
 // Create
 export const createPost = async (req, res) => {
   try {
-    const { userId, description, picturePath } = req.body;
+    const { userId, description } = req.body;
+    const picturePath = req.file.filename;
     const user = await User.findById(userId);
     const newPost = new Post({
       userId,
@@ -69,7 +70,8 @@ export const editPost = async (req, res) => {
 export const updatePost = async (req, res) => {
   try {
     const { id } = req.params;
-    const { description, picturePath } = req.body;
+    const { description } = req.body;
+    const picturePath = req.file.filename;
     const updatedPost = await Post.findByIdAndUpdate(
       id,
       {
