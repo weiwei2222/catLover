@@ -1,64 +1,94 @@
-# catLover app
+# CatLover
 
-CatLover app is the Social Media for cat lover!
+A social media web app for cat lovers — sign up, share photos of your cats, make friends, and like each other's posts.
 
-# Introduction
+**Live demo:** https://catlover.onrender.com
+> Hosted on Render's free tier, so the first load may take about a minute while the server wakes up.
 
-<img src="https://github.com/weiwei2222/catLover/blob/main/Schema.png">
-<img src="https://github.com/weiwei2222/catLover/blob/main/Routes.png">
-<img src="https://github.com/weiwei2222/catLover/blob/main/Screenshot1.png">
-<img src="https://github.com/weiwei2222/catLover/blob/main/Screenshot2.png">
-<img src="https://github.com/weiwei2222/catLover/blob/main/Screenshot3.png">
+## Screenshots
 
-# Getting Started
+![CatLover screenshot 1](Screenshot1.png)
+![CatLover screenshot 2](Screenshot2.png)
+![CatLover screenshot 3](Screenshot3.png)
 
-<a href="https://trello.com/b/jzsinVwf/catlover" target="_blank">Trello link</a><br/>
-<a href="https://catlover.onrender.com/" target="_blank">Live demo</a>
+## Features
 
-# Technologies Used
+- **Accounts** — sign up and log in with JWT authentication; passwords are hashed with bcrypt and never returned by the API. You can upload a profile picture when you sign up.
+- **Posts** — create posts with a photo and a caption, and edit or delete your own posts.
+- **Feed** — a home feed showing everyone's posts, with like / unlike.
+- **Profiles** — each profile shows the user's posts, location, and how many cats they have.
+- **Friends** — view a user's friends list and add or remove friends.
+- **Forms & uploads** — Formik + Yup validation, and drag-and-drop image upload with React Dropzone.
+- **Interface** — responsive Material UI layout with a custom theme and light/dark-friendly styling.
 
-Here is a list of the technologes used in the CatLover App.
+## Tech Stack
 
-Backend use Express + MongoDB <br/>
-<a href="https://expressjs.com/" target="_blank">Express</a><br/>
-<a href="https://www.mongodb.com/" target="_blank">MongoDB</a><br/>
-<a href="https://github.com/Automattic/mongoose" target="_blank">Mongoose</a><br/>
-<a href="https://www.npmjs.com/package/body-parser" target="_blank">body-parser</a><br/><br/>
+| Layer    | Technologies |
+|----------|--------------|
+| Frontend | React 18, Vite, Redux Toolkit, Redux Persist, React Router 6, Material UI (MUI), Formik, Yup, React Dropzone |
+| Backend  | Node.js, Express, JWT, bcrypt, Multer, Helmet, Morgan |
+| Database | MongoDB with Mongoose |
 
-Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.<br/>
-<a href="https://github.com/expressjs/multer" target="_blank">Multer</a><br/>
-<a href="https://youtu.be/i8yxx6V9UdM?si=5e3MnA9UIkZisWqg">Multer Tutorial<a><br />
-<a href="https://github.com/expressjs/multer/blob/master/doc/README-zh-cn.md" target="_blank">Multer Documentation Tutorial</a><br/>
-<a href="https://www.jianshu.com/p/0c87bc377df5" target="_blank">Multer Tutorial example article</a><br/><br/>
+## Architecture
 
-Frondend use Vite + Redux <br/>
-<a href="https://vitejs.dev/guide/" target="_blank">Vite</a><br/>
-<a href="https://redux-toolkit.js.org/" target="_blank">Reduxjs/toolkit</a><br/>
-<a href="https://www.youtube.com/watch?v=mvfsC66xqj0&list=PLTMNWTDdd5z_CtvbzG6r1f4hjnCaphPTV&index=3" target="_blank">Redux Tutorial</a><br/><br/>
+Data model:
 
-For Storage <br/>
-<a href="https://github.com/rt2zz/redux-persist" target="_blank">Redux Persist</a><br/>
-For upload photos <br/>
-<a href="https://react-dropzone.js.org/" target="_blank">React Dropzone</a><br/><br/>
+![Database schema](Schema.png)
 
-For form <br/>
-<a href="https://formik.org/docs/overview" target="_blank">Formik</a><br/>
-<a href="https://github.com/jquense/yup" target="_blank">Yup</a><br/>
-<a href="https://www.jianshu.com/p/466526b72833" target="_blank"> Formik Yup article</a><br/><br/>
+API routes:
 
-For CSS and UI <br/>
-<a href="https://mui.com/material-ui/getting-started/installation/" target="_blank">Material UI</a><br/>
-<a href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58" target="_blank">Material UI Tutorial</a><br/>
-<a href="https://mui.com/material-ui/customization/dark-mode/" target="_blank">Theme Mode</a><br/>
-<a href="https://mui.com/material-ui/customization/color/" target="_blank">Theme color</a><br/>
-<a href="https://fonts.google.com/" target="_blank">Google Fonts</a><br/><br/>
+![API routes](Routes.png)
 
-For free photos
-<a href="https://www.pexels.com/" target="_blank">Pexels</a><br/>
+Main API endpoints (all post/user routes require a valid JWT):
 
-# Unsolved Problems
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/signup` | Create an account (with profile picture upload) |
+| POST | `/api/auth/login` | Log in and receive a token |
+| GET | `/api/users/:id` | Get a user's profile |
+| GET | `/api/users/:id/friends` | Get a user's friends |
+| PATCH | `/api/users/:id/:friendId` | Add or remove a friend |
+| GET | `/api/posts` | Get the full feed |
+| GET | `/api/posts/:userId/posts` | Get one user's posts |
+| POST | `/api/posts` | Create a post (with photo upload) |
+| PATCH | `/api/posts/:id` | Edit a post |
+| PATCH | `/api/posts/:id/like` | Like or unlike a post |
+| DELETE | `/api/posts/:id` | Delete a post |
 
-User comment function
-User profile display
+## Run It Locally
 
-# Future Enhancements
+```bash
+git clone https://github.com/weiwei2222/catLover.git
+cd catLover
+npm install
+```
+
+Create a `.env` file in the project root:
+
+```
+DATABASE_URL=<your MongoDB connection string>
+SECRET=<your JWT secret>
+PORT=3005
+```
+
+Then build the frontend and start the server (Express serves the built app):
+
+```bash
+npm run build
+npm start
+```
+
+For frontend development with hot reload, run `npm run dev` (Vite) alongside `npm start`.
+
+## Planning
+
+Project board: [Trello — CatLover](https://trello.com/b/jzsinVwf/catlover)
+
+## Author
+
+**Weiwei Lin** — front-end developer
+Portfolio: https://weiwei2222.github.io/weiwei/ · GitHub: [@weiwei2222](https://github.com/weiwei2222)
+
+---
+
+*The previous version of this README is kept in [README_OLD.md](README_OLD.md).*
